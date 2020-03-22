@@ -16,19 +16,29 @@ const initialTodos = [
   {
     id: 3,
     item: 'make dinner',
-    completed: false
+    completed: true
+  },
+  {
+    id: 4,
+    item: 'make dessert',
+    completed: true
   }
 ]
 
 const App = () => {
-  const [todos, setTodos] = useState(initialTodos)
+  const [todosArray, setTodosArray] = useState(initialTodos)
   return (
     <div className="App">
       <header className='header'>
         <h1>TODO Tracker</h1>
       </header>
       <main className='main'>
-        TODO: TODO's
+        {todosArray.map(todo => (
+          <div
+            className='todo-badge'
+            key={todo.id}
+            style={{ textDecoration: todo.completed ? 'line-through' : undefined }}>{todo.item}</div>
+        ))}
       </main>
     </div>
   );

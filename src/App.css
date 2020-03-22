@@ -19,3 +19,11 @@ main {
   /* background: silver; */
   font-size: 2rem;
 }
+
+.todo-badge {
+  font-size: 2.4rem;
+  background: silver;
+  margin: 5px 0;
+  padding-left: 15px;
+  border-radius: 5px;
+}
