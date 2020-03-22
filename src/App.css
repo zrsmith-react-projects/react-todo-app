@@ -1,0 +1,21 @@
+.header {
+  width: 100%;
+  height: 100px;
+  background: lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 3.4rem;
+}
+
+main {
+  min-width: 600px;
+  width: 70%;
+  margin: 0 auto;
+  padding-top: 20px;
+  /* background: silver; */
+  font-size: 2rem;
+}
