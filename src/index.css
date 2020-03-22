@@ -8,11 +8,3 @@
   font-family: 'Indie Flower', cursive;
 }
 
-main {
-  min-width: 600px;
-  width: 70%;
-  margin: 0 auto;
-  padding-top: 20px;
-  /* background: silver; */
-  font-size: 2rem;
-}
