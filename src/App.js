@@ -35,28 +35,37 @@ const App = () => {
         <h1>TODO Tracker</h1>
       </header>
       <main className='main'>
-        {todosArray.map(todo => (
-          <div
-            className='todo-badge'
-            key={todo.id}
-            style={{ textDecoration: todo.completed ? 'line-through' : undefined }}
-            onClick={() => {
-              setTodosArray(todosArray.map(t => {
-                return t.id === todo.id ? { ...t, completed: !t.completed } : t
-                // if (t.id === todo.id) {
-                //   return { ...t, completed: !t.completed }
-                // } else {
-                //   return t
-                // }
-              }))
-            }}
-          >
-            {todo.item}
-          </div>
-        ))}
+        <TodoList todosArray={todosArray} setTodosArray={setTodosArray} />
       </main>
     </div>
   );
+}
+
+const TodoList = ({ todosArray, setTodosArray }) => {
+  return (
+    <div>
+      {todosArray.map(todo => (
+        <Todo key={todo.id} todo={todo} todosArray={todosArray} setTodosArray={setTodosArray} />
+      ))}
+    </div>
+  )
+}
+
+const Todo = ({ todo, setTodosArray, todosArray }) => {
+  return (
+    <div
+      className='todo-badge'
+      key={todo.id}
+      style={{ textDecoration: todo.completed ? 'line-through' : undefined }}
+      onClick={() => {
+        setTodosArray(todosArray.map(t => {
+          return t.id === todo.id ? { ...t, completed: !t.completed } : t
+        }))
+      }}
+    >
+      {todo.item}
+    </div>
+  )
 }
 
 export default App;
