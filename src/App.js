@@ -48,6 +48,11 @@ const App = () => {
       <main className='main'>
         <form onSubmit={e => {
           e.preventDefault()
+          setTodosArray([...todosArray, {
+            id: Date.now(),
+            item: todoText,
+            completed: false
+          }])
         }}>
           <input
             name='todo'
@@ -57,20 +62,7 @@ const App = () => {
               // console.log(todoText)
             }}
           />
-          <button onClick={() => {
-            setTodosArray([...todosArray, {
-              id: Date.now(),
-              item: todoText,
-              completed: false
-            }])
-
-            // causes mutation of todosArray, thus it is changed
-            // todosArray.push(newTodo)
-            // The concat works perfect, but older school
-            // setTodosArray(todosArray.concat(newTodo))    
-
-
-          }}>add</button>
+          <button type='submit'>add</button>
           <TodoList todosArray={todosArray} toggleTodo={toggleTodo} />
         </form>
       </main>
