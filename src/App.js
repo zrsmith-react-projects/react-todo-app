@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import './App.css';
+// multi classNames with filter
+const cn = (...classNames) => classNames.filter(x => x).join(' ')
 
 const initialTodos = [
   {
@@ -37,7 +39,20 @@ const App = () => {
           <div
             className='todo-badge'
             key={todo.id}
-            style={{ textDecoration: todo.completed ? 'line-through' : undefined }}>{todo.item}</div>
+            style={{ textDecoration: todo.completed ? 'line-through' : undefined }}
+            onClick={() => {
+              setTodosArray(todosArray.map(t => {
+                if (t.id === todo.id) {
+                  t.completed = !t.completed
+                  return t
+                } else {
+                  return t
+                }
+              }))
+            }}
+          >
+            {todo.item}
+          </div>
         ))}
       </main>
     </div>
