@@ -46,15 +46,22 @@ const App = () => {
       </header>
 
       <main className='main'>
-        <form onSubmit={e => {
-          e.preventDefault()
-          setTodosArray([...todosArray, {
-            id: Date.now(),
-            item: todoText,
-            completed: false
-          }])
-        }}>
+        <form
+          className='form'
+          onSubmit={e => {
+            e.preventDefault()
+            if (todoText !== '') {
+              setTodosArray([{
+                id: Date.now(),
+                item: todoText,
+                completed: false
+              }, ...todosArray])   // if ...todosArray is first, it adds new todo to bottom, or here to top
+              setTodoText('')
+            }
+
+          }}>
           <input
+            className='input'
             name='todo'
             value={todoText}
             onChange={e => {
@@ -62,7 +69,7 @@ const App = () => {
               // console.log(todoText)
             }}
           />
-          <button type='submit'>add</button>
+          <button className='submitBtn' type='submit'>add</button>
           <TodoList todosArray={todosArray} toggleTodo={toggleTodo} />
         </form>
       </main>

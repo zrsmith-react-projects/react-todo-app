@@ -26,4 +26,22 @@ main {
   margin: 5px 0;
   padding-left: 15px;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.form {
+  font-size: 3rem;
+}
+
+.submitBtn {
+  width: 8%;
+  margin: 0 15px;
+  cursor: pointer;
+}
+
+.input {
+  padding-left: 10px;
+  width: 88%;
+  color: lightcoral;
+  border-radius: 5px;
 }
