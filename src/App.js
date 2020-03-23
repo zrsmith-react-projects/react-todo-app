@@ -29,39 +29,42 @@ const initialTodos = [
 
 const App = () => {
   const [todosArray, setTodosArray] = useState(initialTodos)
+
+  const toggleTodo = (todo) => {
+    setTodosArray(todosArray.map(t => {
+      return t.id === todo.id ? { ...t, completed: !t.completed } : t
+    }))
+  }
+
   return (
     <div className="App">
       <header className='header'>
         <h1>TODO Tracker</h1>
       </header>
       <main className='main'>
-        <TodoList todosArray={todosArray} setTodosArray={setTodosArray} />
+        <TodoList todosArray={todosArray} toggleTodo={toggleTodo} />
       </main>
     </div>
   );
 }
 
-const TodoList = ({ todosArray, setTodosArray }) => {
+const TodoList = ({ todosArray, toggleTodo }) => {
   return (
     <div>
       {todosArray.map(todo => (
-        <Todo key={todo.id} todo={todo} todosArray={todosArray} setTodosArray={setTodosArray} />
+        <Todo key={todo.id} todo={todo} toggleTodo={toggleTodo} />
       ))}
     </div>
   )
 }
 
-const Todo = ({ todo, setTodosArray, todosArray }) => {
+const Todo = ({ todo, toggleTodo }) => {
   return (
     <div
       className='todo-badge'
       key={todo.id}
       style={{ textDecoration: todo.completed ? 'line-through' : undefined }}
-      onClick={() => {
-        setTodosArray(todosArray.map(t => {
-          return t.id === todo.id ? { ...t, completed: !t.completed } : t
-        }))
-      }}
+      onClick={() => toggleTodo(todo)}
     >
       {todo.item}
     </div>
