@@ -46,28 +46,33 @@ const App = () => {
       </header>
 
       <main className='main'>
-        <input
-          value={todoText}
-          onChange={e => {
-            setTodoText(e.target.value)
+        <form onSubmit={e => {
+          e.preventDefault()
+        }}>
+          <input
+            name='todo'
+            value={todoText}
+            onChange={e => {
+              setTodoText(e.target.value)
+              // console.log(todoText)
+            }}
+          />
+          <button onClick={() => {
+            setTodosArray([...todosArray, {
+              id: Date.now(),
+              item: todoText,
+              completed: false
+            }])
 
-            console.log(todoText)
-          }}
-        />
-        <button onClick={() => {
-          setTodosArray([...todosArray, {
-            id: Date.now(),
-            item: todoText,
-            completed: false
-          }])
-          // causes mutation of todosArray, thus it is changed
-          // todosArray.push(newTodo)
-          // The concat works perfect, but older school
-          // setTodosArray(todosArray.concat(newTodo))    
+            // causes mutation of todosArray, thus it is changed
+            // todosArray.push(newTodo)
+            // The concat works perfect, but older school
+            // setTodosArray(todosArray.concat(newTodo))    
 
 
-        }}>add</button>
-        <TodoList todosArray={todosArray} toggleTodo={toggleTodo} />
+          }}>add</button>
+          <TodoList todosArray={todosArray} toggleTodo={toggleTodo} />
+        </form>
       </main>
     </div>
   );
