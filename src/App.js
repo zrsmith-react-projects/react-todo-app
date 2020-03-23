@@ -42,12 +42,12 @@ const App = () => {
             style={{ textDecoration: todo.completed ? 'line-through' : undefined }}
             onClick={() => {
               setTodosArray(todosArray.map(t => {
-                if (t.id === todo.id) {
-                  t.completed = !t.completed
-                  return t
-                } else {
-                  return t
-                }
+                return t.id === todo.id ? { ...t, completed: !t.completed } : t
+                // if (t.id === todo.id) {
+                //   return { ...t, completed: !t.completed }
+                // } else {
+                //   return t
+                // }
               }))
             }}
           >
