@@ -27,8 +27,11 @@ const initialTodos = [
   }
 ]
 
+
+
 const App = () => {
   const [todosArray, setTodosArray] = useState(initialTodos)
+  const [todoText, setTodoText] = useState('My new todo text')
 
   const toggleTodo = (todo) => {
     setTodosArray(todosArray.map(t => {
@@ -41,7 +44,29 @@ const App = () => {
       <header className='header'>
         <h1>TODO Tracker</h1>
       </header>
+
       <main className='main'>
+        <input
+          value={todoText}
+          onChange={e => {
+            setTodoText(e.target.value)
+
+            console.log(todoText)
+          }}
+        />
+        <button onClick={() => {
+          setTodosArray([...todosArray, {
+            id: Date.now(),
+            item: todoText,
+            completed: false
+          }])
+          // causes mutation of todosArray, thus it is changed
+          // todosArray.push(newTodo)
+          // The concat works perfect, but older school
+          // setTodosArray(todosArray.concat(newTodo))    
+
+
+        }}>add</button>
         <TodoList todosArray={todosArray} toggleTodo={toggleTodo} />
       </main>
     </div>
